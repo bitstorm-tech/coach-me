@@ -1,0 +1,11 @@
+{
+  "navbar": {
+    "account": "Account",
+    "recordings": "Recordings",
+    "roadmap": "Roadmap"
+  },
+  "sign-in": "Sing in <> Sign up",
+  "sign-up": "Sing up",
+  "logout": "Logout",
+  "delete": "Delete"
+}
