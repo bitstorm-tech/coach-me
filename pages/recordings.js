@@ -41,7 +41,7 @@ function Recordings({recordingsFromDb}) {
         </PrimaryButton>
       </div>
       <div className="flex flex-row space-x-4 justify-center flex-wrap">
-        {recordings.map(recording =>
+        {recordings && recordings.map(recording =>
           <div key={recording._id} className="m-3 lg:w-5/12">
             <RecordingCard name={recording.name} onDelete={() => removeRecording(recording._id)}/>
           </div>

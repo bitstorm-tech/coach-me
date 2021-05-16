@@ -1,4 +1,7 @@
 {
   "new-recording": "New Recording",
-  "start-recording": "Start Recording"
+  "upload-recording": "Upload Recording",
+  "modal-title": "Create new Recording",
+  "start-recording": "Start Recording",
+  "stop-recording": "Stop Recording"
 }
