@@ -9,7 +9,7 @@ export default function Layout({children}) {
 
   const menuItems = [
     {text: t('navbar.roadmap'), href: '/roadmap', visible: true},
-    {text: t('navbar.recordings'), href: '/recordings', visible: !!user},
+    {text: t('navbar.sessions'), href: '/sessions', visible: !!user},
     {text: t('navbar.account'), href: '/account', visible: !!user}
   ];
 

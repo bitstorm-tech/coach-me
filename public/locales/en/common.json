@@ -1,7 +1,7 @@
 {
   "navbar": {
     "account": "Account",
-    "recordings": "Recordings",
+    "sessions": "Sessions",
     "roadmap": "Roadmap"
   },
   "sign-in": "Sing in <> Sign up",

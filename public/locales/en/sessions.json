@@ -1,7 +1,7 @@
 {
-  "new-recording": "New Recording",
+  "new-session": "New Session",
   "upload-recording": "Upload Recording",
-  "modal-title": "Create new Recording",
+  "new-session-modal-title": "Create new Session",
   "start-recording": "Start Recording",
   "stop-recording": "Stop Recording"
 }

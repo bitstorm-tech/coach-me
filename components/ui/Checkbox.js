@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default function Checkbox({text, onChange, checked = false}) {
+export default function Checkbox({children, onChange, checked = false}) {
   const [isChecked, setChecked] = useState(checked)
 
   function toggle() {
@@ -22,7 +22,7 @@ export default function Checkbox({text, onChange, checked = false}) {
         <input type="checkbox" className="opacity-0 absolute cursor-pointer"/>
         {isChecked && renderCheck()}
       </div>
-      <div className="select-none cursor-pointer">{text}</div>
+      <div className="select-none cursor-pointer">{children}</div>
     </div>
   );
 }

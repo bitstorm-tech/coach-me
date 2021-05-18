@@ -2,15 +2,15 @@ import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import PrimaryButton from '../components/ui/buttons/PrimaryButton';
 import { useTranslation } from 'next-i18next';
-import RecordingCard from '../components/page/recordings/RecordingCard';
+import SessionCard from '../components/page/sessions/SessionCard';
 import { useState } from 'react';
-import NewRecordingModal from '../components/page/recordings/NewRecordingModal';
+import NewSessionModal from '../components/page/sessions/NewSessionModal';
 import connectToMongoDb from '../backend/mongodb';
 import axios from 'axios';
 import Recording from '../backend/models/recording';
 
-function Recordings({recordingsFromDb}) {
-  const {t} = useTranslation('recordings');
+function Sessions({recordingsFromDb}) {
+  const {t} = useTranslation('sessions');
   const [recordings, setRecordings] = useState(recordingsFromDb);
   const [showModal, setShowModal] = useState(false);
 
@@ -19,7 +19,7 @@ function Recordings({recordingsFromDb}) {
   }
 
   async function removeRecording(id) {
-    await axios.delete(`/api/recordings/${id}`);
+    await axios.delete(`/api/sessions/${id}`);
     setRecordings([...recordings.filter(recording => recording._id !== id)]);
   }
 
@@ -37,29 +37,29 @@ function Recordings({recordingsFromDb}) {
     <div className="p-5">
       <div className="flex flex-row justify-center space-x-4 mb-5">
         <PrimaryButton onClick={openModal}>
-          {t('new-recording')}
+          {t('new-session')}
         </PrimaryButton>
       </div>
       <div className="flex flex-row space-x-4 justify-center flex-wrap">
         {recordings && recordings.map(recording =>
           <div key={recording._id} className="m-3 lg:w-5/12">
-            <RecordingCard name={recording.name} onDelete={() => removeRecording(recording._id)}/>
+            <SessionCard name={recording.name} onDelete={() => removeRecording(recording._id)}/>
           </div>
         )}
       </div>
-      <NewRecordingModal visible={showModal} onClose={closeModal} onSave={addRecording}/>
+      <NewSessionModal visible={showModal} onClose={closeModal} onSave={addRecording}/>
     </div>
   );
 }
 
-export default withPageAuthRequired(Recordings);
+export default withPageAuthRequired(Sessions);
 
 export async function getServerSideProps({locale}) {
   await connectToMongoDb();
   const recordings = await Recording.find();
   return {
     props: {
-      ...await serverSideTranslations(locale, ['common', 'recordings']),
+      ...await serverSideTranslations(locale, ['common', 'sessions']),
       guardiansFromDb: JSON.parse(JSON.stringify(recordings))
     }
   };

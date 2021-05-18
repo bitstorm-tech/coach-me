@@ -3,7 +3,7 @@ import { useState } from 'react';
 import DeleteButton from '../../ui/buttons/DeleteButton';
 import Checkbox from '../../ui/Checkbox';
 
-export default function RecordingCard({name, onDelete, editable = false}) {
+export default function SessionCard({name, onDelete, editable = false}) {
   const [isEditable] = useState(editable);
   return (
     <div className="bg-white p-6 rounded-xl shadow-xl">
