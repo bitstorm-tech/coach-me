@@ -67,7 +67,7 @@ export default function Navbar({menuItems}) {
   }
 
   return (
-    <nav className="flex flex-col sm:flex-row bg-gray-800 justify-between sm:h-14 p-2 top-0 border-b">
+    <nav className="flex flex-col sm:flex-row bg-gray-800 justify-between sm:h-14 p-2 top-0">
       <div className="flex flex-row justify-between items-center">
         <div className="cursor-pointer flex flex-row space-x-2 font-lg" onClick={closeMobileMenu}>
           <Image src="/images/coach-me-logo.png" height="28px" width="28px"/>

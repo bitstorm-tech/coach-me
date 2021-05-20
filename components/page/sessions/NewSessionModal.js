@@ -1,49 +1,23 @@
 import Modal from '../../ui/Modal';
 import { useTranslation } from 'next-i18next';
-import PrimaryButton from '../../ui/buttons/PrimaryButton';
-import { useState } from 'react';
-import ScreenRecorder from '../../../utils/ScreenRecorder';
-import Checkbox from '../../ui/Checkbox';
+import Input from '../../ui/Input';
+import Select from '../../ui/Select';
 
 export default function NewSessionModal({visible, onClose, onSave}) {
-  const [recording, setRecording] = useState(false);
   const {t} = useTranslation('sessions');
-
-  const startRecording = async () => {
-    await ScreenRecorder.startRecording();
-    setRecording(true);
-  }
-
-  const stopRecording = () => {
-    ScreenRecorder.stopRecording();
-    setRecording(false);
-  }
-
-  function onCloseInternal() {
-    setRecording(false);
-    onClose();
-  }
+  const gameOptions = ['League of Legends', 'StarCraft II', 'Hearthstone', 'World of Tanks', 'World of Warcraft', 'Dota 2'].sort((a, b) => a.localeCompare(b));
 
   return (
-    <Modal title={t('new-session-modal-title')} visible={visible} onClose={onCloseInternal} onSave={() => onSave(recording)}>
-      <div className="flex flex-col space-y-4">
-        <div className="flex flex-row justify-between">
-          <div className="flex flex-row space-x-4">
-            <PrimaryButton onClick={startRecording} disabled={recording}>
-              {t('start-recording')}
-            </PrimaryButton>
-            <PrimaryButton onClick={stopRecording} disabled={!recording}>
-              {t('stop-recording')}
-            </PrimaryButton>
-            <Checkbox>
-              Save local
-            </Checkbox>
+    <Modal title={t('new-session-modal-title')} visible={visible} onClose={onClose} onSave={() => onSave(recording)}>
+        <div className="flex flex-col justify-between space-y-2">
+          <div className="flex flex-row justify-between space-x-2">
+            <Input label="Name"/>
+            <div className="w-72">
+              <Select label="Game" placeholder="Select Game" options={gameOptions}/>
+            </div>
           </div>
-          <PrimaryButton>
-            {t('upload-recording')}
-          </PrimaryButton>
+          <Input label="Description"/>
         </div>
-      </div>
     </Modal>
   );
 }

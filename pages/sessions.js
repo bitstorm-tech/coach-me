@@ -1,13 +1,12 @@
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import PrimaryButton from '../components/ui/buttons/PrimaryButton';
 import { useTranslation } from 'next-i18next';
-import SessionCard from '../components/page/sessions/SessionCard';
 import { useState } from 'react';
-import NewSessionModal from '../components/page/sessions/NewSessionModal';
 import connectToMongoDb from '../backend/mongodb';
 import axios from 'axios';
 import Recording from '../backend/models/recording';
+import NewSessionModal from '../components/page/sessions/NewSessionModal';
+import SessionRow from '../components/page/sessions/SessionRow';
 
 function Sessions({recordingsFromDb}) {
   const {t} = useTranslation('sessions');
@@ -35,19 +34,28 @@ function Sessions({recordingsFromDb}) {
 
   return (
     <div className="p-5">
-      <div className="flex flex-row justify-center space-x-4 mb-5">
-        <PrimaryButton onClick={openModal}>
-          {t('new-session')}
-        </PrimaryButton>
+      {/*<div className="flex flex-row justify-center mb-5 space-x-4">*/}
+      {/*  <PrimaryButton onClick={openModal}>*/}
+      {/*    {t('new-session')}*/}
+      {/*  </PrimaryButton>*/}
+      {/*</div>*/}
+      {/*<div className="flex flex-row flex-wrap justify-center space-x-4">*/}
+      {/*  {recordings && recordings.map(recording =>*/}
+      {/*    <div key={recording._id} className="m-3 lg:w-5/12">*/}
+      {/*      <SessionCard name={recording.name} onDelete={() => removeRecording(recording._id)}/>*/}
+      {/*    </div>*/}
+      {/*  )}*/}
+      {/*</div>*/}
+      <div className="m-4">
+        <SessionRow/>
       </div>
-      <div className="flex flex-row space-x-4 justify-center flex-wrap">
-        {recordings && recordings.map(recording =>
-          <div key={recording._id} className="m-3 lg:w-5/12">
-            <SessionCard name={recording.name} onDelete={() => removeRecording(recording._id)}/>
-          </div>
-        )}
+      <div className="m-4">
+        <SessionRow/>
       </div>
-      <NewSessionModal visible={showModal} onClose={closeModal} onSave={addRecording}/>
+      <div className="m-4">
+        <SessionRow/>
+      </div>
+      <NewSessionModal visible={showModal} onClose={closeModal}/>
     </div>
   );
 }

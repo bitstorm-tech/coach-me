@@ -8,6 +8,7 @@ export default function Home() {
         <title>c04ch.ME</title>
         <link rel="icon" href="/favicon.ico"/>
       </Head>
+      <p className="p-10 text-center text-red-500">Hallo!</p>
     </div>
   );
 }

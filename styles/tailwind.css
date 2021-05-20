@@ -1,4 +1,6 @@
 /* purgecss start ignore */
+@import url('https://fonts.googleapis.com/css2?family=KoHo:wght@300&display=swap');
+
 @tailwind base;
 
 @tailwind components;
@@ -8,4 +10,5 @@
 /* purgecss start ignore */
 html {
     @apply antialiased;
+    font-family: 'KoHo', sans-serif;
 }
