@@ -27,7 +27,7 @@ export default function DeleteButton({onDelete}) {
   }
 
   return (
-    <button className="bg-red-600 rounded-full focus:outline-none text-white px-2" onClick={toggleConfirmation}>
+    <button className="bg-accent rounded-full focus:outline-none text-white px-2" onClick={toggleConfirmation}>
       {confirmation ? renderConfirmationButtons() : <div>{t('delete')}</div>}
     </button>
   );

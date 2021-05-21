@@ -7,7 +7,7 @@ export default function NavbarItem({children, href = '#', visible = true}) {
 
   return (
     <Link href={href}>
-      <div className="text-indigo-200 hover:text-red-500 cursor-pointer">
+      <div className="text-primary hover:text-accent cursor-pointer hover-transition">
         {children}
       </div>
     </Link>

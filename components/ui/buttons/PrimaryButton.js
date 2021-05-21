@@ -1,12 +1,13 @@
 import Link from 'next/link';
 
-export default function PrimaryButton({children, href='#', onClick=()=>{}, disabled=false}) {
-  const enabledClasses = disabled ? 'bg-indigo-100 cursor-default' : 'cursor-pointer hover:bg-indigo-300 bg-indigo-400';
+export default function PrimaryButton({children, href='#', onClick=()=>{}, disabled=false, border=true}) {
+  const enabledClasses = disabled ? 'cursor-default' : 'cursor-pointer';
+  const borderClasses = border ? 'rounded-full border-primary border hover:shadow-inner-glow hover:border-accent' : 'hover:text-accent'
 
   function renderButton() {
     return (
       <button onClick={onClick} disabled={disabled}
-           className={`rounded w-max py-1 px-3 text-white rounded-full focus:outline-none ${enabledClasses}`}>
+           className={`rounded w-max py-1 px-3 text-primary bg-opacity-100 focus:outline-none  hover-transition ${enabledClasses} ${borderClasses}`}>
         {children}
       </button>
     )

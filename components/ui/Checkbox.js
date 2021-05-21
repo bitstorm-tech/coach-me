@@ -10,7 +10,7 @@ export default function Checkbox({children, onChange, checked = false}) {
 
   function renderCheck() {
     return (
-      <svg className="fill-current w-4/5 h-4/5 text-indigo-500" viewBox="0 0 20 20">
+      <svg className="fill-current w-4/5 h-4/5 text-primary" viewBox="0 0 20 20">
         <path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/>
       </svg>
     );

@@ -16,7 +16,7 @@ export default function Layout({children}) {
   return (
     <>
       <Navbar menuItems={menuItems}/>
-      <div className="bg-gray-800">
+      <div className="bg-darkest">
         {children}
       </div>
       <Footer/>
