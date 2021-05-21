@@ -40,9 +40,8 @@ export default function Select({label, options=[], placeholder='', onChange=()=>
   }
 
   return (
-    <div className="flex flex-col" ref={ref}>
-      <label className="pl-1 text-primary">{label}</label>
-      <div className="flex flex-col">
+    <div ref={ref}>
+      <label className="pl-1 text-primary text-xs">{label}</label>
         <div className="flex items-center relative">
           <input onClick={open} placeholder={placeholder} value={selected.length > 0 ? selected : undefined}
                  onChange={event => change(event.target.value)}
@@ -59,7 +58,6 @@ export default function Select({label, options=[], placeholder='', onChange=()=>
             </div>
           )}
         </div>}
-      </div>
     </div>
   );
 }

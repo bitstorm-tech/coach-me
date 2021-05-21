@@ -10,7 +10,7 @@ export default function NewSessionModal({visible, onClose, onSave}) {
   return (
     <Modal title={t('new-session-modal-title')} visible={visible} onClose={onClose} onSave={() => onSave(recording)}>
         <div className="flex flex-col justify-between space-y-2">
-          <div className="flex flex-row justify-between space-x-2">
+          <div className="flex space-x-2">
             <Input label="Name"/>
             <div className="w-72">
               <Select label="Game" placeholder="Select Game" options={gameOptions}/>
