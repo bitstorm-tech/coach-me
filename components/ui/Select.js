@@ -51,7 +51,7 @@ export default function Select({label, options=[], placeholder='', onChange=()=>
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={isOpen ? 'M5 15l7-7 7 7' : 'M19 9l-7 7-7-7'} />
           </svg>
         </div>
-        {isOpen && <div className="absolute bg-dark mt-12 border rounded border-darkest">
+        {isOpen && <div className="absolute bg-dark mt-1 border rounded border-darkest">
           {filteredOptions.map((option, i) =>
             <div key={i} onClick={() => select(option)} className="my-1 px-4 cursor-pointer text-primary">
               {option}
