@@ -6,11 +6,11 @@ export default function PersonalInformationTab() {
     <div className="p-10">
       <Card>
         <div className="flex justify-between space-x-4">
-          <Input label="Vorname"/>
-          <Input label="Nachname"/>
+          <Input label="Vorname" />
+          <Input label="Nachname" />
         </div>
-        <Input label="Nickname"/>
-        <Input label="E-Mail"/>
+        <Input label="Nickname" />
+        <Input label="E-Mail" />
       </Card>
     </div>
   );

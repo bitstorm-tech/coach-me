@@ -5,19 +5,19 @@ import { useState } from 'react';
 import ScreenRecorder from '../../../utils/ScreenRecorder';
 import Checkbox from '../../ui/Checkbox';
 
-export default function NewRecordingModal({visible, onClose, onSave}) {
+export default function NewRecordingModal({ visible, onClose, onSave }) {
   const [recording, setRecording] = useState(false);
-  const {t} = useTranslation('sessions');
+  const { t } = useTranslation('sessions');
 
   const startRecording = async () => {
     await ScreenRecorder.startRecording();
     setRecording(true);
-  }
+  };
 
   const stopRecording = () => {
     ScreenRecorder.stopRecording();
     setRecording(false);
-  }
+  };
 
   function onCloseInternal() {
     setRecording(false);
@@ -25,7 +25,12 @@ export default function NewRecordingModal({visible, onClose, onSave}) {
   }
 
   return (
-    <Modal title={t('new-session-modal-title')} visible={visible} onClose={onCloseInternal} onSave={() => onSave(recording)}>
+    <Modal
+      title={t('new-session-modal-title')}
+      visible={visible}
+      onClose={onCloseInternal}
+      onSave={() => onSave(recording)}
+    >
       <div className="flex flex-col space-y-4">
         <div className="flex flex-row justify-between">
           <div className="flex flex-row space-x-4">
@@ -35,13 +40,9 @@ export default function NewRecordingModal({visible, onClose, onSave}) {
             <PrimaryButton onClick={stopRecording} disabled={!recording}>
               {t('stop-recording')}
             </PrimaryButton>
-            <Checkbox>
-              Save local
-            </Checkbox>
+            <Checkbox>Save local</Checkbox>
           </div>
-          <PrimaryButton>
-            {t('upload-recording')}
-          </PrimaryButton>
+          <PrimaryButton>{t('upload-recording')}</PrimaryButton>
         </div>
       </div>
     </Modal>

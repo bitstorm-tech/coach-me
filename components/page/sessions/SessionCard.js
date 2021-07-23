@@ -3,7 +3,7 @@ import { useState } from 'react';
 import DeleteButton from '../../ui/buttons/DeleteButton';
 import Checkbox from '../../ui/Checkbox';
 
-export default function SessionCard({name, onDelete, editable = false}) {
+export default function SessionCard({ name, onDelete, editable = false }) {
   const [isEditable] = useState(editable);
   return (
     <div className="bg-white p-6 rounded-xl shadow-xl">
@@ -12,7 +12,7 @@ export default function SessionCard({name, onDelete, editable = false}) {
       </div>
       <div className="mb-2">
         <h1>Blocked Sites</h1>
-        <hr/>
+        <hr />
         <h1>Blocking Time</h1>
         <div className="flex flex-row space-x-4 py-1">
           <Checkbox text="Mo" />
@@ -23,11 +23,11 @@ export default function SessionCard({name, onDelete, editable = false}) {
           <Checkbox text="Sa" />
           <Checkbox text="So" />
         </div>
-        <hr/>
+        <hr />
         <h1>Motivation Claims</h1>
       </div>
       <div className="pt-4 flex flex-row-reverse space-x-reverse space-x-2">
-        <DeleteButton onDelete={onDelete}/>
+        <DeleteButton onDelete={onDelete} />
         <PrimaryButton>Edit</PrimaryButton>
       </div>
     </div>

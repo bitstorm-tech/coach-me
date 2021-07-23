@@ -1,8 +1,8 @@
 import Link from 'next/link';
 
-export default function NavbarItem({children, href = '#', visible = true}) {
+export default function NavbarItem({ children, href = '#', visible = true }) {
   if (!visible) {
-    return '';
+    return null;
   }
 
   return (

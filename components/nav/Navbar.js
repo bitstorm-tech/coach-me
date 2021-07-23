@@ -6,11 +6,13 @@ import CloseSymbol from '../ui/CloseSymbol';
 import { useUser } from '@auth0/nextjs-auth0';
 import PrimaryButton from '../ui/buttons/PrimaryButton';
 import Image from 'next/image';
+import LoginModal from '../auth/LoginModal';
 
-export default function Navbar({menuItems}) {
+export default function Navbar({ menuItems }) {
   const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
-  const {t} = useTranslation('common');
-  const {user} = useUser();
+  const [loginModalVisible, setLoginModalVisible] = useState(false);
+  const { t } = useTranslation('common');
+  const { user } = useUser();
 
   function toggleMobileMenu() {
     setMobileMenuVisible(!mobileMenuVisible);
@@ -27,7 +29,9 @@ export default function Navbar({menuItems}) {
       </div>
     ) : (
       <div className="mx-2">
-        <PrimaryButton href="/api/auth/login">{t('sign-in')}</PrimaryButton>
+        <PrimaryButton onClick={setLoginModalVisible.bind(true)}>
+          {t('sign-in')} {t('or')} {t('sign-up')}
+        </PrimaryButton>
       </div>
     );
   }
@@ -36,16 +40,14 @@ export default function Navbar({menuItems}) {
     if (mobileMenuVisible) {
       return (
         <div className="flex flex-col items-center w-full mt-4 sm:hidden">
-          {menuItems.map((menuItem, i) =>
+          {menuItems.map((menuItem, i) => (
             <div className="mt-4" key={i} onClick={closeMobileMenu}>
               <NavbarItem href={menuItem.href} visible={menuItem.visible}>
                 {menuItem.text}
               </NavbarItem>
-            </div>)
-          }
-          <div className="mt-10">
-            {renderAuthButtons()}
-          </div>
+            </div>
+          ))}
+          <div className="mt-10">{renderAuthButtons()}</div>
         </div>
       );
     }
@@ -54,31 +56,40 @@ export default function Navbar({menuItems}) {
   function renderDesktopMenu() {
     return (
       <div className="hidden sm:flex flex-row items-center w-min">
-        {menuItems.map((menuItem, i) =>
+        {menuItems.map((menuItem, i) => (
           <div className="mx-2 w-max" key={i}>
             <NavbarItem href={menuItem.href} visible={menuItem.visible}>
               {menuItem.text}
             </NavbarItem>
-          </div>)
-        }
+          </div>
+        ))}
         {renderAuthButtons()}
       </div>
     );
   }
 
   return (
-    <nav className="flex flex-col sm:flex-row bg-darkest justify-between sm:h-14 p-2 top-0">
-      <div className="flex flex-row justify-between items-center">
-        <div className="cursor-pointer flex flex-row space-x-2 font-lg" onClick={closeMobileMenu}>
-          <Image src="/images/coach-me-logo.png" height="28px" width="28px"/>
-          <NavbarItem href="/">c04ch.ME</NavbarItem>
+    <>
+      <nav className="flex flex-col sm:flex-row bg-darkest justify-between sm:h-14 p-2 top-0">
+        <div className="flex flex-row justify-between items-center">
+          <div
+            className="cursor-pointer flex flex-row space-x-2 font-lg"
+            onClick={closeMobileMenu}
+          >
+            <Image src="/images/coach-me-logo.png" height="28px" width="28px" />
+            <NavbarItem href="/">c04ch.ME</NavbarItem>
+          </div>
+          <div className="sm:hidden" onClick={toggleMobileMenu}>
+            {mobileMenuVisible ? <CloseSymbol /> : <HamburgerSymbol />}
+          </div>
         </div>
-        <div className="sm:hidden" onClick={toggleMobileMenu}>
-          {mobileMenuVisible ? <CloseSymbol/> : <HamburgerSymbol/>}
-        </div>
-      </div>
-      {renderDesktopMenu()}
-      {renderMobileMenu()}
-    </nav>
+        {renderDesktopMenu()}
+        {renderMobileMenu()}
+      </nav>
+      <LoginModal
+        visible={loginModalVisible}
+        onClose={() => setLoginModalVisible(false)}
+      />
+    </>
   );
 }

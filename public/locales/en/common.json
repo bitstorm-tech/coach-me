@@ -4,8 +4,9 @@
     "sessions": "Sessions",
     "roadmap": "Roadmap"
   },
-  "sign-in": "Sing in <> Sign up",
+  "sign-in": "Sing in",
   "sign-up": "Sing up",
   "logout": "Logout",
-  "delete": "Delete"
+  "delete": "Delete",
+  "or": "or"
 }

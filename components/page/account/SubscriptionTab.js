@@ -1,5 +1,3 @@
 export default function SubscritpionTab() {
-  return (
-    <h1>Subscription</h1>
-  )
+  return <h1>Subscription</h1>;
 }
