@@ -9,10 +9,10 @@
 
 /* purgecss start ignore */
 html {
-    @apply antialiased;
-    font-family: 'KoHo', sans-serif;
+  @apply antialiased;
+  font-family: 'KoHo', sans-serif;
 }
 
 .hover-transition {
-    @apply transition ease-linear duration-200;
+  @apply transition ease-linear duration-100;
 }
