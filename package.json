@@ -2,6 +2,7 @@
   "name": "coach-me-frontend",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "yarn@3.0.0",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -23,6 +24,5 @@
     "postcss": "^8.2.13",
     "tailwindcss": "^2.1.2",
     "typescript": "^4.3.5"
-  },
-  "packageManager": "yarn@3.0.0"
+  }
 }
