@@ -6,17 +6,20 @@ const ScreenRecorder = {
   recordedChunks: [],
 
   async startRecording() {
-    const media = await navigator.mediaDevices.getDisplayMedia({video: true, audio: true});
+    const media = await navigator.mediaDevices.getDisplayMedia({
+      video: true,
+      audio: true,
+    });
     const stream = new MediaStream(media.getTracks());
-    this.mediaRecorder = new MediaRecorder(stream, {mimeType});
+    this.mediaRecorder = new MediaRecorder(stream, { mimeType });
 
     this.mediaRecorder.ondataavailable = (event) => {
       this.recordedChunks.push(event.data);
     };
 
     this.mediaRecorder.onstop = () => {
-      media.getTracks().forEach(track => track.stop());
-      const blob = new Blob(this.recordedChunks, {type: mimeType});
+      media.getTracks().forEach((track) => track.stop());
+      const blob = new Blob(this.recordedChunks, { type: mimeType });
       saveAs(blob, this.generateFilename());
       this.recordedChunks = [];
     };
@@ -30,9 +33,13 @@ const ScreenRecorder = {
 
   generateFilename() {
     const now = new Date();
-    const dateAndTime = now.toISOString().substring(0, 16).replace('T', '__').replace(':', '-');
+    const dateAndTime = now
+      .toISOString()
+      .substring(0, 16)
+      .replace('T', '__')
+      .replace(':', '-');
     return `coach-me__${dateAndTime}.webm`;
-  }
-}
+  },
+};
 
 export default ScreenRecorder;
