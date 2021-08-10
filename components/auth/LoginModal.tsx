@@ -1,17 +1,24 @@
+import PrimaryButton from '../ui/buttons/PrimaryButton';
 import { useTranslation } from 'next-i18next';
 import Modal from '../ui/Modal';
 
-export default function LoginModal({ visible, onClose }) {
+interface LoginModalProps {
+  onClose: () => void;
+}
+
+export default function LoginModal(props: LoginModalProps) {
   const { t } = useTranslation('common');
 
-  function save() {}
+  const buttons = [
+    <PrimaryButton onClick={() => alert('Hallo!!!!')}>Hallo</PrimaryButton>,
+    <PrimaryButton onClick={() => alert('Mega!!!!!')}>Mega!</PrimaryButton>,
+  ];
 
   return (
     <Modal
-      visible={visible}
       title={`${t('sign-in')} ${t('or')} ${t('sign-up')}`}
-      onClose={onClose}
-      onSave={save}
+      onClose={props.onClose}
+      buttons={buttons}
     >
       <h1>Login Modal</h1>
     </Modal>

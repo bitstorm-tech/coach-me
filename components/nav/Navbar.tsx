@@ -8,7 +8,11 @@ import PrimaryButton from '../ui/buttons/PrimaryButton';
 import Image from 'next/image';
 import LoginModal from '../auth/LoginModal';
 
-export default function Navbar({ menuItems }) {
+interface NavbarProps {
+  menuItems: { text: string; href: string; visible: boolean }[];
+}
+
+export default function Navbar(props: NavbarProps) {
   const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
   const [loginModalVisible, setLoginModalVisible] = useState(false);
   const { t } = useTranslation('common');
@@ -40,7 +44,7 @@ export default function Navbar({ menuItems }) {
     if (mobileMenuVisible) {
       return (
         <div className="flex flex-col items-center w-full mt-4 sm:hidden">
-          {menuItems.map((menuItem, i) => (
+          {props.menuItems.map((menuItem, i) => (
             <div className="mt-4" key={i} onClick={closeMobileMenu}>
               <NavbarItem href={menuItem.href} visible={menuItem.visible}>
                 {menuItem.text}
@@ -56,7 +60,7 @@ export default function Navbar({ menuItems }) {
   function renderDesktopMenu() {
     return (
       <div className="hidden sm:flex flex-row items-center w-min">
-        {menuItems.map((menuItem, i) => (
+        {props.menuItems.map((menuItem, i) => (
           <div className="mx-2 w-max" key={i}>
             <NavbarItem href={menuItem.href} visible={menuItem.visible}>
               {menuItem.text}
@@ -66,6 +70,14 @@ export default function Navbar({ menuItems }) {
         {renderAuthButtons()}
       </div>
     );
+  }
+
+  function renderLoginModal() {
+    if (!loginModalVisible) {
+      return null;
+    }
+
+    return <LoginModal onClose={() => setLoginModalVisible(false)} />;
   }
 
   return (
@@ -86,10 +98,7 @@ export default function Navbar({ menuItems }) {
         {renderDesktopMenu()}
         {renderMobileMenu()}
       </nav>
-      <LoginModal
-        visible={loginModalVisible}
-        onClose={() => setLoginModalVisible(false)}
-      />
+      {renderLoginModal()}
     </>
   );
 }
